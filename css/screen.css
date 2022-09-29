@@ -780,7 +780,7 @@ display: flex;
  {
     display: block;
     content: '';
-    background-color: #FFFFFF;
+    background-color: var(--global-input-backgroundColor);
     height: 22px;
     width: 22px;
     border-radius: 100%;
@@ -794,7 +794,7 @@ display: flex;
 .c-option--hidden:checked + label .c-custom-toggle__fake-input
 {
     background-color: var(--global-color-alpha);
-    border-color: var(--global-color-alpha);
+    border-color: var(--global-color-alpha-dark);
 }
 /*
     Component: Button
