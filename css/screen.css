@@ -50,6 +50,8 @@
     --global-color-neutral-xxxx-dark: #20223a;
 
     --global-color-focus: #81ADF0;
+
+    --global-color-Toggle-background : #1B4186;
     /* border stuff */
     --global-borderRadius: 3px;
     --global-borderWidth: 1px;
@@ -759,18 +761,41 @@ display: flex;
     ---
     Class to put on Toggles
 */
-
-.c-custom-toggle__fake-input{
-     
-    width:48px;
-    height: 24px;
-    display: block;
-    background: var(--global-color-neutral-xxxx-light);
-    border-color: var(--global-color-neutral-xxx-dark);
-    border-radius: 24px;
+.c-custom-toggle{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-
+.c-custom-toggle__fake-input{
+    display: block;
+    width: 48px;
+    height: 24px;
+    background: var(--global-color-neutral-xxx-light);
+    border-radius: 24px;
+    margin-right: 16px;
+    border:solid var(--global-color-neutral-xxxx-light)  1px;
+}
+ .c-custom-toggle__fake-input::after
+ {
+    display: block;
+    content: '';
+    background-color: #FFFFFF;
+    height: 22px;
+    width: 22px;
+    border-radius: 100%;
+    box-shadow: 0px 0px #000000;
+    transition: all var(--transition-alpha);
+ }
+ .c-option--hidden:checked + label .c-custom-toggle__fake-input::after
+ {
+    transform: translateX(24px);
+ }
+.c-option--hidden:checked + label .c-custom-toggle__fake-input
+{
+    background-color: var(--global-color-alpha);
+    border-color: var(--global-color-alpha);
+}
 /*
     Component: Button
     ---
