@@ -19,6 +19,12 @@
 \*------------------------------------*/
 
 :root {
+    --global-input-backgroundColor: White;
+    --global-input-color: var(--global-color-neutral-xxxx-dark);
+    --global-input-borderColor: var(--global-color-neutral-xxx-light);
+    --global-input-hover-borderColor: var(--global-color-neutral-xx-light);
+    --global-input-focus-borderColor: var(--global-color-alpha);
+    --global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
     /* colors */
     --global-color-alpha-h: 216deg;
     --global-color-alpha-s: 100%;
@@ -43,6 +49,7 @@
     --global-color-neutral-xxx-dark: #35374d;
     --global-color-neutral-xxxx-dark: #20223a;
 
+    --global-color-focus: #81ADF0;
     /* border stuff */
     --global-borderRadius: 3px;
     --global-borderWidth: 1px;
@@ -67,6 +74,12 @@
     /*  = 48px */
     --global-whitespace-xxl: calc(var(--global-whitespace) * 3);
     /*  = 72px */
+    /*Transition variables*/
+    --global-transitionTiming:100ms;
+    /*flip variable*/
+    --global-flip:360deg;
+    /*global cubic animation*/
+    --global-cubic: cubic-bezier(0.250, 0.250, 0.695, 0.555);
 }
 
 /*------------------------------------*\
@@ -601,26 +614,32 @@ input::placeholder {
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    border: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
     border-radius: var(--global-borderRadius);
-    color: var(--global-color-neutral-xxxx-dark);
-    background-color: White;
     font-family: inherit;
     font-size: 16px;
     line-height: calc(var(--global-baseline) * 3);
     padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-md);
     outline: none;
     transition: border var(--global-transition-timing-alpha);
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+    background-color: var(--global-input-backgroundColor);
+    color: var(--global-input-color);
 }
 
 .c-input:hover {
     border-color: var(--global-color-neutral-xx-light);
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+        background-color: var(--global-input-backgroundColor);
+        color: var(--global-input-color);
 }
 
 .c-input:focus,
 .c-input:active {
     border-color: var(--global-color-alpha);
     box-shadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+        background-color: var(--global-input-backgroundColor);
+        color: var(--global-input-color);
 }
 
 /* option input for checkboxes and radio buttons */
@@ -629,6 +648,94 @@ input::placeholder {
     margin-right: var(--global-whitespace-sm);
 }
 
+label svg{
+    display: none;
+}
+.c-option--hidden:checked+label svg{
+    display: block;
+}
+.c-custom-option{
+    --custom-option-borderColor: var(--global-input-borderColor);
+        --custom-option-focus-borderColor: var(--global-input-focus-borderColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+
+
+
+.c-custom-option__fake-input
+{
+    display: flex;
+    height: 16px;
+    width: 16px;
+    border: 1px solid var(--custom-option-borderColor);
+    margin-right: 8px;
+
+}
+.c-custom-option:hover {
+  --custom-option-borderColor: var(--global-color-neutral-dark);
+}
+
+.c-option--hidden:active+label .c-custom-option__fake-input{
+     border-color: var(--global-color-focus);
+     box-shadow: #9ac3ff 0 0 0 3px;
+}
+
+.c-option--hidden:focus+label .c-custom-option__fake-input {
+    border-color: var(--global-color-focus);
+    box-shadow: #9ac3ff 0 0 0 3px;
+}
+
+.c-custom-option__fake-input--checkbox{
+border-radius: var(--global-borderRadius);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.c-custom-option__fake-input--radio{
+border-radius: 100%;
+display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.c-custom-option__symbol
+{
+    display: block;
+    opacity: 0;
+}
+.c-option--hidden:checked +label .c-custom-option__symbol{
+    opacity: 1;
+    transition: all var(--global-transitionTiming) var(--global-cubic);
+    transition-timing-function: var(--global-cubic);
+    transform: rotate(var(--global-flip));
+}
+.c-custom-option__fake-input--checkbox .c-custom-option__symbol {
+    height: 10px;
+    width: 10px;
+    fill: var(--global-color-alpha);
+    
+}
+
+
+.c-custom-option__fake-input--radio .c-custom-option__symbol {
+    height: 6px;
+    width: 6px;
+    background-color: var(--global-color-alpha);
+    border-radius: 100%;
+}
+/*
+    Component: List
+*/
+.c-option-list
+{
+    margin-bottom: 24px;
+}
+ .c-option-list__item{
+    margin-bottom: 12px;
+ }
 /*
     Component: Label
     ---
@@ -645,7 +752,24 @@ input::placeholder {
 
 .c-label--option {
     padding-bottom: 0;
+    margin-bottom: 8px;
 }
+/*
+    Component: Toggle
+    ---
+    Class to put on Toggles
+*/
+
+.c-custom-toggle__fake-input{
+     
+    width:48px;
+    height: 24px;
+    display: block;
+    background: var(--global-color-neutral-xxxx-light);
+    border-color: var(--global-color-neutral-xxx-dark);
+    border-radius: 24px;
+}
+
 
 /*
     Component: Button
