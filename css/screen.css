@@ -824,8 +824,16 @@ display: flex;
     ---
     Class to put on all list
 */
-.c-toggle-list + .c-toggle-list__items{
-    
+ul> :first-child+li.c-toggle-list__item {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border-top: #757787 1px solid;
+    border-bottom: #757787 1px solid;
+}
+.c-toggle__label--inverted{
+ display: flex;
+ flex-direction: row-reverse;
+ 
 }
 
 /*
