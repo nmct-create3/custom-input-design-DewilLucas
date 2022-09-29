@@ -783,7 +783,7 @@ display: flex;
     background-color: var(--global-input-backgroundColor);
     height: 22px;
     width: 22px;
-    border-radius: 100%;
+    border-radius: 999px;
     box-shadow: 0px 0px #000000;
     transition: all var(--transition-alpha);
  }
@@ -795,6 +795,29 @@ display: flex;
 {
     background-color: var(--global-color-alpha);
     border-color: var(--global-color-alpha-dark);
+}
+.c-option--hidden:focus+label .c-custom-toggle__fake-input {
+    box-shadow: #9ac3ff 0 0 0 3px;
+    border: solid var(--global-color-focus) 1px;
+}
+.c-option--hidden:active+label .c-custom-toggle__fake-input {
+    box-shadow: #9ac3ff 0 0 0 3px;
+    border: solid var(--global-color-focus) 1px;
+}
+.c-option--hidden:hover+label .c-custom-toggle__fake-input {
+    box-shadow: #9ac3ff 0 0 0 3px;
+    border: solid var(--global-color-focus) 1px;
+}
+.c-option--hidden:active+.c-custom-toggle .c-custom-toggle__fake-input::after,
+ .c-custom-toggle:active .c-custom-toggle__fake-input::after{
+    
+    width: 32px;
+}
+.c-option--hidden:active:checked+.c-custom-toggle .c-custom-toggle__fake-input::after,
+.c-option--hidden:checked+.c-custom-toggle:active .c-custom-toggle__fake-input::after {
+    
+    width: 32px;
+    margin-left: -10px;
 }
 /*
     Component: Button
