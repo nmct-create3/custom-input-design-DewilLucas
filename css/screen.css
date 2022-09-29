@@ -820,6 +820,15 @@ display: flex;
     margin-left: -10px;
 }
 /*
+    Component: Toggle list
+    ---
+    Class to put on all list
+*/
+.c-toggle-list + .c-toggle-list__items{
+    
+}
+
+/*
     Component: Button
     ---
     Class to put on form buttons or
